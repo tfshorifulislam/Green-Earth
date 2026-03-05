@@ -1,5 +1,16 @@
 const url = 'https://openapi.programming-hero.com/api/categories'
 const categoriesContainer = document.getElementById('categories-container')
+const loadingSpinner = document.getElementById('loading-spinner')
+
+// loading spinner;
+const showLoading =()=>{
+    loadingSpinner.classList.remove('hidden')
+    mainContent.innerHTML = ''
+}
+
+// const hiddenSpinner = ()=>{
+//     loadingSpinner.classList.add('hidden')
+// }
 
 // all categories button;
 const allCategories = () => {
@@ -25,6 +36,8 @@ const mainContent = document.getElementById('main-content')
 const plantsUrl = 'https://openapi.programming-hero.com/api/plants'
 
 const allPlant = () => {
+    showLoading()
+
     fetch(plantsUrl)
         .then(res => res.json())
         .then(data => allPlantCards(data.plants))
