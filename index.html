@@ -25,11 +25,15 @@
 <body class="font max-w-[1920px] mx-auto">
     <header>
         <!-- navbar -->
-        <div class="navbar bg-[#15803D] shadow-sm">
+        <div class="navbar bg-[#15803D] shadow-sm px-5">
             <div class="navbar-start">
-                <div class="dropdown">
+                <div class="dropdown md:hidden">
                     <div tabindex="0" role="button" class="btn btn-ghost  ">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h8m-8 6h16" />
+                        </svg>
                     </div>
                     <ul tabindex="-1"
                         class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
@@ -38,7 +42,7 @@
                         <li><a>Plant a Tree</a></li>
                     </ul>
                 </div>
-                <a class="btn btn-ghost text-xl hidden md:flex"><img src="./assets/Green Earth.png" alt=""></a>
+                <a href="#"><img src="./assets/Green Earth.png" alt=""></a>
             </div>
             <div class="navbar-center hidden md:flex">
                 <ul class="menu menu-horizontal px-1 font-medium text-white">
@@ -49,8 +53,22 @@
             </div>
             <a class="btn btn-ghost text-4xl flex md:hidden font-bold text-white">G</a>
             <div class="navbar-end">
-                <a class="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl text-[#15803D] bg-[#FACC15] rounded-full border-none font-medium">Plant a Tree</a>
+                <a
+                    class="btn btn-xs sm:btn-sm md:btn-md text-[#15803D] bg-[#FACC15] rounded-full border-none font-medium">Plant
+                    a Tree</a>
             </div>
+        </div>
+
+        <!-- hero -->
+        <div class="hero-container flex justify-center flex-col bg-[url('./assets/bg.png')] h-[383px] w-full space-y-2 md:space-y-5 px-5">
+            <h1 class="text-[#1F2937] text-xl font-bold text-center md:text-4xl">Plant a Tree, Grow a Future</h1>
+            <p class="text-[#1F293790] text-center ">Join our mission to plant 1 million trees and make the Earth greener for future
+                generations.</p>
+                <div class="flex justify-center">
+                    <button
+                        class="btn btn-xs sm:btn-sm md:btn-md text-[#15803D] bg-[#FACC15] rounded-full border-none font-medium">Get Involved
+                    </button>
+                </div>
         </div>
     </header>
 </body>
