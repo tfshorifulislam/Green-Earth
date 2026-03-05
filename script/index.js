@@ -3,14 +3,14 @@ const categoriesContainer = document.getElementById('categories-container')
 const loadingSpinner = document.getElementById('loading-spinner')
 
 // loading spinner;
-const showLoading =()=>{
+const showLoading = () => {
     loadingSpinner.classList.remove('hidden')
     mainContent.innerHTML = ''
 }
 
-// const hiddenSpinner = ()=>{
-//     loadingSpinner.classList.add('hidden')
-// }
+const hiddenSpinner = () => {
+    loadingSpinner.classList.add('hidden')
+}
 
 // all categories button;
 const allCategories = () => {
@@ -24,12 +24,36 @@ const categories = (categoriesBtn) => {
     categoriesBtn.categories.forEach(element => {
         // console.log(categoriesBtn)
         const newBtn = document.createElement('button');
-        newBtn.classList = 'w-full  p-2 px-5 text-black flex justify-start rounded-lg btn btn-ghost'
+        newBtn.classList = 'all-tress-btn w-full  p-2 px-5 text-black flex justify-start rounded-lg btn btn-ghost'
         newBtn.innerText = element.category_name
+        newBtn.onclick = () => selectCategory(element.id, newBtn)
         categoriesContainer.appendChild(newBtn)
     });
 }
 allCategories()
+// select Category
+const selectCategory = (categoryId, newBtn) => {
+    showLoading()
+
+    const allSectionButton = document.querySelectorAll('.all-tress-btn')
+
+    allSectionButton.forEach(btn => {
+        
+        btn.classList.remove('bg-[#15803D]', 'text-white')
+    });
+        newBtn.classList.add('bg-[#15803D]', 'text-white')
+
+        const url = `https://openapi.programming-hero.com/api/category/${categoryId}`
+        fetch(url)
+            .then(res => res.json())
+            .then(data => plantCategory(data.plants))
+       
+}
+
+const plantCategory = (plant)=>{
+    allPlantCards(plant)
+    hiddenSpinner()
+}
 
 //  All Plants
 const mainContent = document.getElementById('main-content')
