@@ -67,6 +67,7 @@ const allPlant = () => {
     fetch(plantsUrl)
         .then(res => res.json())
         .then(data => allPlantCards(data.plants))
+    
 }
 
 const allPlantCards = (cards) => {
@@ -97,9 +98,11 @@ const allPlantCards = (cards) => {
         `
 
         mainContent.appendChild(plantCardsDiv)
+        hiddenSpinner()
     });
 }
 allPlant()
+
 
 // all tress button;
 const allPlantBtn = document.getElementById('all-plant-btn')
