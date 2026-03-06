@@ -197,7 +197,7 @@ const updateCart = () => {
         totalPrice += element.price * element.quantity
 
         newDiv.innerHTML = `
-            <div class="flex justify-between bg-base-300 py-5 px-3 rounded-lg">
+            <div class="flex justify-between bg-base-100 shadow-sm py-5 px-3 rounded-lg">
 
                         <div class="space-y-3">
                             <h2 class="font-medium text-lg">${element.name}</h2>
