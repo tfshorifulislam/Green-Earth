@@ -1,7 +1,8 @@
 const url = 'https://openapi.programming-hero.com/api/categories'
 const categoriesContainer = document.getElementById('categories-container')
 const loadingSpinner = document.getElementById('loading-spinner')
-
+const cartContainer = document.getElementById('cart-container')
+const cart = []
 // loading spinner;
 const showLoading = () => {
     loadingSpinner.classList.remove('hidden')
@@ -78,7 +79,7 @@ const allPlantCards = (cards) => {
                             <img onclick="displayModal(${plantCards.id})" class="w-full h-[187px] rounded-lg cursor-pointer" src="${plantCards.image}" alt="">
                         </div>
                         <div class="space-y-2">
-                            <h2 class="font-semibold text-[#1F2937]" onclick="displayModal(${plantCards.id})" >${plantCards.name}</h2>
+                            <h2 class="font-semibold text-[#1F2937] cursor-pointer hover:text-[#15803d]" onclick="displayModal(${plantCards.id})" >${plantCards.name}</h2>
                             <p class="font-normal text-sm text-[#1F2937] line-clamp-2">${plantCards.description}</p>
                             <div class="flex justify-between">
 
@@ -89,7 +90,7 @@ const allPlantCards = (cards) => {
                                 <h2 class="font-semibold text-[#1F2937] leading-5">${plantCards.price}</h2>
                             </div>
                         </div>
-                        <button class="btn w-full text-white rounded-full bg-[#15803D]">Success</button>
+                        <button onclick="cartClick(${plantCards.id}, '${plantCards.name}', ${plantCards.price})"  class="btn w-full text-white rounded-full bg-[#15803D]">Add to Cart</button>
                     </div>
         
         `
@@ -119,6 +120,7 @@ allPlantBtn.onclick = () => {
 
 // modal section;
 const myModal = document.getElementById('my_modal_3')
+const modalCart = document.getElementById('modal-cart')
 const modalTitle = document.getElementById('modal-title')
 const modalImg = document.getElementById('modal-img')
 const categoryDetails = document.getElementById('category-details')
@@ -138,7 +140,54 @@ const modal = (modalId) => {
     // console.log(modalId);
     modalTitle.innerText = modalId.name;
     modalImg.src = modalId.image;
-    categoryDetails.innerText =  modalId.category;
+    categoryDetails.innerText = modalId.category;
     modalDescription.innerText = modalId.description;
     modalPrice.innerText = modalId.price;
+    
+    modalCart.onclick = () => cartClick(modalId.id, modalId.name, modalId.price)
+}
+
+
+// cart click function;
+const cartClick = (id, name, price) => {
+    console.log(id, name, price);
+    const existing = cart.find(item => item.id === id);
+
+    if(existing){
+        existing.quantity++
+    }
+    else{
+
+        cart.push({
+            id,
+            name,
+            price,
+            quantity:1
+        })
+    }
+
+    updateCart()
+}
+
+const updateCart = () => {
+
+    cartContainer.innerHTML = ''
+   
+    cart.forEach(element => {
+        const newDiv = document.createElement('div')
+
+        newDiv.innerHTML = `
+            <div class="flex justify-between bg-base-300 py-5 px-3 rounded-lg">
+
+                        <div class="space-y-3">
+                            <h2 class="font-medium text-lg">${element.name}</h2>
+                            <p class="font-bold text-xl">${element.price * element.quantity} x ${element.quantity}</p>
+                        </div>
+
+                        <button class="cursor-pointer btn ">delete</button>
+                    </div>
+        `
+
+        cartContainer.appendChild(newDiv)
+    });
 }
