@@ -2,7 +2,9 @@ const url = 'https://openapi.programming-hero.com/api/categories'
 const categoriesContainer = document.getElementById('categories-container')
 const loadingSpinner = document.getElementById('loading-spinner')
 const cartContainer = document.getElementById('cart-container')
-const totalCounter =document.getElementById('total-counter')
+const totalCounter = document.getElementById('total-counter')
+const successfulBtn = document.getElementById('cart-successful')
+const emptyContainer = document.getElementById('empty-container')
 let cart = []
 // loading spinner;
 const showLoading = () => {
@@ -67,13 +69,14 @@ const allPlant = () => {
     fetch(plantsUrl)
         .then(res => res.json())
         .then(data => allPlantCards(data.plants))
-    
+
 }
 
 const allPlantCards = (cards) => {
 
     cards.forEach(plantCards => {
         const plantCardsDiv = document.createElement('div')
+
         plantCardsDiv.innerHTML = `
         
         <div class="bg-white p-4 rounded-2xl space-y-3">
@@ -92,7 +95,7 @@ const allPlantCards = (cards) => {
                                 <h2 class="font-semibold text-[#1F2937] leading-5">${plantCards.price}</h2>
                             </div>
                         </div>
-                        <button onclick="cartClick(${plantCards.id}, '${plantCards.name}', ${plantCards.price})"  class="btn w-full text-white rounded-full bg-[#15803D]">Add to Cart</button>
+                        <button id="cart-successful" onclick="cartClick(${plantCards.id}, '${plantCards.name}', ${plantCards.price})"  class="btn w-full text-white rounded-full bg-[#15803D]">Add to Cart</button>
                     </div>
         
         `
@@ -147,7 +150,7 @@ const modal = (modalId) => {
     categoryDetails.innerText = modalId.category;
     modalDescription.innerText = modalId.description;
     modalPrice.innerText = modalId.price;
-    
+
     modalCart.onclick = () => cartClick(modalId.id, modalId.name, modalId.price)
 }
 
@@ -157,16 +160,16 @@ const cartClick = (id, name, price) => {
 
     const existing = cart.find(item => item.id === id);
 
-    if(existing){
+    if (existing) {
         existing.quantity++
     }
-    else{
+    else {
 
         cart.push({
             id,
             name,
             price,
-            quantity:1
+            quantity: 1
         })
     }
 
@@ -176,6 +179,15 @@ const cartClick = (id, name, price) => {
 const updateCart = () => {
 
     cartContainer.innerHTML = ''
+
+
+    if(cart.length === 0){
+        emptyContainer.classList.remove('hidden')
+        totalCounter.innerText = `৳ 0.00`;
+        return;
+    }
+        emptyContainer.classList.add('hidden')
+
 
     let totalPrice = 0;
 
@@ -198,14 +210,16 @@ const updateCart = () => {
 
         cartContainer.appendChild(newDiv)
 
+
     });
     totalCounter.innerText = `৳ ${totalPrice}`;
+
 }
 
 // delete selected cart;
-const removeCart = (removeCartId)=>{
+const removeCart = (removeCartId) => {
 
-    const allRemoveCart = cart.filter(item =>item.id !== removeCartId);
+    const allRemoveCart = cart.filter(item => item.id !== removeCartId);
     // console.log(allRemoveCart)
     cart = allRemoveCart;
     updateCart()
