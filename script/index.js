@@ -2,7 +2,7 @@ const url = 'https://openapi.programming-hero.com/api/categories'
 const categoriesContainer = document.getElementById('categories-container')
 const loadingSpinner = document.getElementById('loading-spinner')
 const cartContainer = document.getElementById('cart-container')
-const cart = []
+let cart = []
 // loading spinner;
 const showLoading = () => {
     loadingSpinner.classList.remove('hidden')
@@ -150,7 +150,7 @@ const modal = (modalId) => {
 
 // cart click function;
 const cartClick = (id, name, price) => {
-    console.log(id, name, price);
+
     const existing = cart.find(item => item.id === id);
 
     if(existing){
@@ -184,10 +184,18 @@ const updateCart = () => {
                             <p class="font-bold text-xl">${element.price * element.quantity} x ${element.quantity}</p>
                         </div>
 
-                        <button class="cursor-pointer btn ">delete</button>
+                        <button onclick="removeCart(${element.id})" class="cursor-pointer btn ">delete</button>
                     </div>
         `
 
         cartContainer.appendChild(newDiv)
     });
+}
+
+const removeCart = (removeCartId)=>{
+
+    const allRemoveCart = cart.filter(item =>item.id !== removeCartId);
+    // console.log(allRemoveCart)
+    cart = allRemoveCart;
+    updateCart()
 }
