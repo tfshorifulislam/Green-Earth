@@ -2,6 +2,7 @@ const url = 'https://openapi.programming-hero.com/api/categories'
 const categoriesContainer = document.getElementById('categories-container')
 const loadingSpinner = document.getElementById('loading-spinner')
 const cartContainer = document.getElementById('cart-container')
+const totalCounter =document.getElementById('total-counter')
 let cart = []
 // loading spinner;
 const showLoading = () => {
@@ -172,9 +173,13 @@ const cartClick = (id, name, price) => {
 const updateCart = () => {
 
     cartContainer.innerHTML = ''
-   
+
+    let totalPrice = 0;
+
     cart.forEach(element => {
         const newDiv = document.createElement('div')
+
+        totalPrice += element.price * element.quantity
 
         newDiv.innerHTML = `
             <div class="flex justify-between bg-base-300 py-5 px-3 rounded-lg">
@@ -189,9 +194,12 @@ const updateCart = () => {
         `
 
         cartContainer.appendChild(newDiv)
+
     });
+    totalCounter.innerText = `৳ ${totalPrice}`;
 }
 
+// delete selected cart;
 const removeCart = (removeCartId)=>{
 
     const allRemoveCart = cart.filter(item =>item.id !== removeCartId);
