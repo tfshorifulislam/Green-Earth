@@ -61,30 +61,35 @@
         </div>
 
         <!-- hero -->
-        <div class="hero-container flex justify-center flex-col bg-[url('./assets/bg.png')] h-[383px] w-full space-y-2 md:space-y-5 px-5">
+        <div
+            class="hero-container flex justify-center flex-col bg-[url('./assets/bg.png')] h-[383px] w-full space-y-2 md:space-y-5 px-5">
             <h1 class="text-[#1F2937] text-xl font-bold text-center md:text-4xl">Plant a Tree, Grow a Future</h1>
-            <p class="text-[#1F293790] text-center ">Join our mission to plant 1 million trees and make the Earth greener for future
+            <p class="text-[#1F293790] text-center ">Join our mission to plant 1 million trees and make the Earth
+                greener for future
                 generations.</p>
-                <div class="flex justify-center">
-                    <button
-                        class="btn btn-xs sm:btn-sm md:btn-md text-[#15803D] bg-[#FACC15] rounded-full border-none font-medium">Get Involved
-                    </button>
-                </div>
+            <div class="flex justify-center">
+                <button
+                    class="btn btn-xs sm:btn-sm md:btn-md text-[#15803D] bg-[#FACC15] rounded-full border-none font-medium">Get
+                    Involved
+                </button>
+            </div>
         </div>
     </header>
 
     <!-- main section -->
-     <main class="mt-12 md:mt-48 w-11/12 md:w-10/12 mx-auto">
+    <main class="mt-12 md:mt-48 w-11/12 md:w-10/12 mx-auto">
 
         <h1 class="font-semibold text-[#1F2937] text-3xl text-center mb-10">Choose Your Trees</h1>
 
         <div class="content-area md:grid md:grid-cols-4 gap-6">
-            <aside id="aside-bar"class="col-span-1 space-y-5">
+            <aside id="aside-bar" class="col-span-1 space-y-5">
                 <h1 class="font-semibold text-xl text-start text-black">Categories</h1>
-            
+
                 <div id="categories-container" class="space-y-3">
 
-                    <p class="all-tress-btn bg-[#15803D] w-full  p-2 px-5 text-white flex justify-start rounded-lg btn btn-ghost">All Trees</p>
+                    <button id="all-plant-btn"
+                        class="all-tress-btn bg-[#15803D] w-full  p-2 px-5 text-white flex justify-start rounded-lg btn btn-ghost">All
+                        Trees</button>
 
                 </div>
             </aside>
@@ -110,17 +115,40 @@
                 </div>
 
                 <!-- loading spinner  -->
-                 <div id="loading-spinner" class="flex justify-center items-center hidden">
-                     <span class="loading loading-spinner loading-xl"></span>
-                 </div>
+                <div id="loading-spinner" class="flex justify-center items-center hidden">
+                    <span class="loading loading-spinner loading-xl"></span>
+                </div>
             </div>
 
             <div class="cart col-span-1">
 
             </div>
         </div>
-     </main>
-<script src="./script/index.js"></script>
+
+        <!-- modal -->
+        <!-- You can open the modal using ID.showModal() method -->
+        <!-- <button class="btn" onclick="my_modal_3.showModal()">open modal</button> -->
+        <dialog id="my_modal_3" class="modal">
+            <div class="modal-box ">
+                <form method="dialog" class="flex justify-between items-center mb-5">
+                    <h3 id="modal-title" class="font-semibold text-2xl text-[#15803D]">Title</h3>
+                    <button class="btn btn-sm btn-circle btn-ghost">✕</button>
+                </form>
+                <div class="space-y-5 mb-5">
+                    <img id="modal-img" class="rounded-lg w-full h-[300px]" src="./assets/bg.png" alt="">
+                    <h3 class="font-medium text-lg">category: <span id="category-details" class="bg-[#15803d] py-1 px-2 rounded-full text-white">fruit tree</span></h3>
+                    <p id="modal-description" class="">Lorem ipsum dolor sit amet</p>
+                    <p id="modal-price" class="text-3xl text-[#15803d] font-bold">Price</p>
+                </div>
+                <div class="space-x-2">
+                    
+                    <button class="btn btn-xs sm:btn-sm md:btn-md bg-[#15823d] border-none text-white">Add to Card</button>
+                </div>
+               
+            </div>
+        </dialog>
+    </main>
+    <script src="./script/index.js"></script>
 </body>
 
 </html>
